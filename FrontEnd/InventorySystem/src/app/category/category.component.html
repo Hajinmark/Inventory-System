@@ -1,0 +1,89 @@
+<div class="main-content">
+    <div class="page-header">
+        <div class="row justify-content-center">
+            <div class="col-md-10 first-header">
+                <h2>Category</h2>
+            </div>
+            <div class="col-md-2 second-header">
+                <button (click)="openAddModal()" class="primary-btn">Add New</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-content">
+        <div class="table-divider mt-5">
+            <table class="table mb-0 table-rounded">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor = "let category of categories | paginate: { itemsPerPage: pageSize, currentPage: currentPage }">
+                    <th scope="row" style="color: #666666;">{{category.categoryId}}</th>
+                    <td>{{category.categoryName}}</td>
+                    <td>{{category.description}}</td>
+                    <td>
+                      <span *ngIf="category.isActivated === true" class="badge badge-success">
+                        Active
+                      </span>
+                      <span *ngIf="category.isActivated === false" class="badge badge-danger">
+                        Inactive
+                      </span>
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-success btn-sm mr-1 mt-1">
+                        <i class="fa fa-edit"></i>
+                      </button>
+                      <button type="button" class="btn btn-danger btn-sm mr-1 mt-1">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+      <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+    </div>
+    
+    @if(this.isVisible)
+    {
+      <div class="category-modal modal-dialog-centered" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Add Category</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" style="color:white;" (click)="closeModal()">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                  <div class="form-group">
+                    <label for="Name">Category Name: </label>
+                    <input type="text" class="form-control" [(ngModel)]="objCategory.categoryName" [ngModelOptions]="{standalone: true}" placeholder="Enter Category Name">
+                  </div>
+                  <div class="form-group">
+                    <label for="Description">Description: </label>
+                    <input type="text" class="form-control" [(ngModel)]="objCategory.description" [ngModelOptions]="{standalone: true}" placeholder="Enter Description">
+                  </div>
+                  <div>
+                    <label for="Status">Status: Active</label>
+                  </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" (click)="addCategory()">Save changes</button>
+              <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+</div>
