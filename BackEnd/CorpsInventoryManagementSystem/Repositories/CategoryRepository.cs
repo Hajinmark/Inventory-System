@@ -85,5 +85,16 @@ namespace CorpsInventoryManagementSystem.Repositories
 
         }
 
+        public async Task<int> CountCategory()
+        {
+            var count = await dbContext.Categories.CountAsync(x => x.IsActivated == true);
+
+            if(count == 0)
+            {
+                return 0;
+            }
+
+            return count;
+        }
     }
 }

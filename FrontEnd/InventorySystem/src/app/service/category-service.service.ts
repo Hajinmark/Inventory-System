@@ -28,4 +28,11 @@ export class CategoryServiceService implements OnInit{
     var newCategory = this.httpClient.post<IAddNewCategory>(url,data);
     return newCategory;
   }
+
+  countCategory() : Observable<number>
+  {
+    var url = 'https://localhost:7262/api/Category/CountCategory';
+    var countCategory = this.httpClient.get<number>(url);
+    return countCategory;
+  }
 }

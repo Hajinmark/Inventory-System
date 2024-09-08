@@ -71,5 +71,27 @@ namespace CorpsInventoryManagementSystem.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("CountCategory")]
+        public async Task<IActionResult> CountCategory()
+        {
+            try
+            {
+                var count  = await categoryRepository.CountCategory();
+
+                if(count != 0)
+                {
+                    return Ok(count);
+                }
+
+                return NotFound(count);
+                
+            }
+
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

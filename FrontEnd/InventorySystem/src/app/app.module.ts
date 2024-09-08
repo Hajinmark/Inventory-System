@@ -11,13 +11,15 @@ import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 // for pagination
 import { NgxPaginationModule } from 'ngx-pagination';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoryComponent,
     SidebarComponent,
-    ProductComponent
+    ProductComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
