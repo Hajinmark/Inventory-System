@@ -36,7 +36,7 @@
                       </span>
                     </td>
                     <td>
-                      <button type="button" class="btn btn-success btn-sm mr-1 mt-1">
+                      <button type="button" (click)="openUpdateModal(category)" class="btn btn-success btn-sm mr-1 mt-1">
                         <i class="fa fa-edit"></i>
                       </button>
                       <button type="button" class="btn btn-danger btn-sm mr-1 mt-1">
@@ -81,6 +81,42 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" (click)="addCategory()">Save changes</button>
               <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+
+
+    @if(this.isUpdateVisible && this.selectedCategory)
+    {
+      <div class="category-modal modal-dialog-centered" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Update Category</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" style="color:white;" (click)="closeUpdateModal()">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                  <div class="form-group">
+                    <label for="Name">Category Name: </label>
+                    <input type="text" class="form-control" [(ngModel)]="selectedCategory.categoryName" [ngModelOptions]="{standalone: true}" placeholder="Enter Category Name">
+                  </div>
+                  <div class="form-group">
+                    <label for="Description">Description: </label>
+                    <input type="text" class="form-control" [(ngModel)]="selectedCategory.description" [ngModelOptions]="{standalone: true}" placeholder="Enter Description">
+                  </div>
+                  <div>
+                    <label for="Status">Status: Active</label>
+                  </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success">Update changes</button>
+              <button type="button" class="btn btn-secondary" (click)="closeUpdateModal()">Close</button>
             </div>
           </div>
         </div>

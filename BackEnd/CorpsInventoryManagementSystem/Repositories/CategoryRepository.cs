@@ -2,6 +2,8 @@
 using CorpsInventoryManagementSystem.Interface;
 using CorpsInventoryManagementSystem.Model.Domain;
 using CorpsInventoryManagementSystem.Model.DTO;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace CorpsInventoryManagementSystem.Repositories
@@ -95,6 +97,24 @@ namespace CorpsInventoryManagementSystem.Repositories
             }
 
             return count;
+        }
+
+        public async Task<List<Category>> SearchCategory([FromQuery] string? categoryId, string? categoryName)
+        {
+            var category = dbContext.Categories.AsQueryable();
+
+            if (!string.IsNullOrEmpty(categoryId) || !string.IsNullOrEmpty(categoryName))
+            {
+                var result = await category.Where(c => (c.CategoryId.Contains(categoryId)) ||
+                                            (c.CategoryName.Contains(categoryName)) &&
+                                            (c.IsActivated == true)).ToListAsync(); 
+                    
+                return result;
+            }
+
+            return await category.ToListAsync();
+                
+
         }
     }
 }

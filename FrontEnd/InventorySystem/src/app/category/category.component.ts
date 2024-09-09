@@ -12,8 +12,8 @@ import { Observable, timer } from 'rxjs';
 })
 export class CategoryComponent implements OnInit {
   isVisible : boolean = false;
-  everySecond: Observable<number> = timer(0, 1000);
-  
+  isUpdateVisible : boolean = false;
+
   objCategory : IAddNewCategory = {
     categoryId : '',
     categoryName: '',
@@ -24,7 +24,8 @@ export class CategoryComponent implements OnInit {
   categories : ICategory[] = [];
   pageSize: number = 5; // Number of items per page
   currentPage: number = 1; // Current page number
-
+  selectedCategory : any;
+  
   constructor(private httpclient : HttpClient, private categoryService : CategoryServiceService)
   {
 
@@ -51,6 +52,17 @@ export class CategoryComponent implements OnInit {
   closeModal()
   {
     this.isVisible = false;
+  }
+
+  openUpdateModal(categories : any)
+  {
+    this.selectedCategory = { ...categories};
+    this.isUpdateVisible = true;
+  }
+
+  closeUpdateModal()
+  {
+    this.isUpdateVisible = !true;
   }
 
   addCategory()

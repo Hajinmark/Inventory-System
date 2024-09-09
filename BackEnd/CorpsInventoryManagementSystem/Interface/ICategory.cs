@@ -9,5 +9,6 @@ namespace CorpsInventoryManagementSystem.Interface
         Task<List<Category>> DisplayCategories();
         Task<string> UpdateCategory(string categoryId, CategoryDTO updateCategory);
         Task<int> CountCategory();
+        Task<List<Category>> SearchCategory(string categoryId, string categoryName);
     }
 }

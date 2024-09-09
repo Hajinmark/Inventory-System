@@ -93,5 +93,21 @@ namespace CorpsInventoryManagementSystem.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("SearchCategory")]
+        public async Task<IActionResult> SearchCategory([FromQuery]string? categoryId, string? categoryName)
+        {
+            try
+            {
+                var category = await categoryRepository.SearchCategory(categoryId, categoryName);
+
+                return Ok(category);
+            }
+
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
