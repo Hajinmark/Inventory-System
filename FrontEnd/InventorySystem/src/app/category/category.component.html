@@ -87,8 +87,8 @@
       </div>
     }
 
-
-    @if(this.isUpdateVisible && this.selectedCategory)
+    <!--UpdateModal Category-->
+    @if(this.isUpdateVisible && this.objCategory)
     {
       <div class="category-modal modal-dialog-centered" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -103,19 +103,19 @@
               <form>
                   <div class="form-group">
                     <label for="Name">Category Name: </label>
-                    <input type="text" class="form-control" [(ngModel)]="selectedCategory.categoryName" [ngModelOptions]="{standalone: true}" placeholder="Enter Category Name">
+                    <input type="text" class="form-control" [(ngModel)]="objUpdateCategory.categoryName" [ngModelOptions]="{standalone: true}" placeholder="Enter Category Name">
                   </div>
                   <div class="form-group">
                     <label for="Description">Description: </label>
-                    <input type="text" class="form-control" [(ngModel)]="selectedCategory.description" [ngModelOptions]="{standalone: true}" placeholder="Enter Description">
+                    <input type="text" class="form-control" [(ngModel)]="objUpdateCategory.description" [ngModelOptions]="{standalone: true}" placeholder="Enter Description">
                   </div>
                   <div>
-                    <label for="Status">Status: Active</label>
+                    <label for="Status">Status: {{objUpdateCategory.isActivated ? 'Active' : 'Inactive'}}</label>
                   </div>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-success">Update changes</button>
+              <button type="button" class="btn btn-success" (click)="updateCategoryData()">Update changes</button>
               <button type="button" class="btn btn-secondary" (click)="closeUpdateModal()">Close</button>
             </div>
           </div>

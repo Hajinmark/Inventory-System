@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { IAddNewCategory, ICategory } from '../model/category';
+import { IAddNewCategory, ICategory, IUpdateCategory } from '../model/category';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -34,5 +34,13 @@ export class CategoryServiceService implements OnInit{
     var url = 'https://localhost:7262/api/Category/CountCategory';
     var countCategory = this.httpClient.get<number>(url);
     return countCategory;
+  }
+
+  updateCategory(id : string, data : IUpdateCategory) : Observable<IUpdateCategory>
+  {
+    var url = 'https://localhost:7262/api/Category/UpdateCategory';
+   
+    var updateCategory = this.httpClient.put<IUpdateCategory>(`${url}?categoryId=${id}`,data);
+    return updateCategory;
   }
 }

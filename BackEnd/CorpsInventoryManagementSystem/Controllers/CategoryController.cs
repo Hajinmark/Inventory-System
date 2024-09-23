@@ -52,7 +52,7 @@ namespace CorpsInventoryManagementSystem.Controllers
         }
 
         [HttpPut("UpdateCategory")]
-        public async Task<IActionResult> UpdateCategory(string categoryId, CategoryDTO category)
+        public async Task<IActionResult> UpdateCategory(string? categoryId, CategoryDTO category)
         {
             try
             {

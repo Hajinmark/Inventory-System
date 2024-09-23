@@ -13,3 +13,11 @@ export interface IAddNewCategory
     description: string,
     isActivated: boolean
 }
+
+export interface IUpdateCategory
+{
+    categoryId : string,
+    categoryName : string,
+    description : string,
+    isActivated : boolean
+}
